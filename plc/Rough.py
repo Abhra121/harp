@@ -403,4 +403,6 @@ def test_function_ss(c):
             tags_bool = tags_bool + R1[i]
         final = [0 for i in range(len(name))]
     payload = json.dumps(Dict)
+    with open("dummy_data/paylod.json", "w") as outfile:
+        json.dump(payload, outfile)
     return payload
