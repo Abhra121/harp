@@ -184,7 +184,10 @@ def pop(la, number):
 
 def parse_msg():
     try:
-        with open('/home/pi/sample.json', 'r') as openfile:
+        with open("dummy_data/sample.json", "r") as outfile:
+                #json.dump(data, outfile)
+        
+        #with open('/home/pi/sample.json', 'r') as openfile:
             m_in = json.load(openfile)
 
         global m
