@@ -231,7 +231,7 @@ class MQTTClient:
                 self.first_run = False
             else:
                 if access == 0:
-                    command = '/home/pi/rmoteStop.sh'
+                    command = 'bash /home/pi/rmoteStop.sh'
                     result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     if result.returncode == 0:
                         self.logger.info(f"VPN Stop Command ran successfully. Checking for removal of tun0 .....")
@@ -260,7 +260,7 @@ class MQTTClient:
                         }
                     )
                     self.client.publish('iot-data3', payload=payload, qos=1, retain=True)
-                    command = '/home/pi/rmoteStart.sh'
+                    command = 'bash /home/pi/rmoteStart.sh'
                     result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     if result.returncode == 0:
                         self.logger.info(f"VPN Start Command ran successfully. Checking for tun0.....")
