@@ -263,11 +263,11 @@ class MQTTClient:
                             time.sleep(1)
                         if not self.check_tun0_available():
                             self.logger.info(f"Remote Access (VPN) Stopped")
-                            #self.execute_command("sudo systemctl restart harp")
-                            #sys.exit()
+                            self.execute_command("sudo systemctl restart harp")
+                            sys.exit()
                         else:
                             self.logger.error("tun0 still available after stopping. There might be an error.")
-                            #sys.exit()
+                            sys.exit()
                     else:
                         self.logger.info(f"Command '{command}' failed with exit code {result.returncode}.")
                         self.logger.info("Error output:")
