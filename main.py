@@ -222,6 +222,25 @@ class MQTTClient:
                         self.logger.info(f"Device_info Payload send! Message ID: {mid}")
                     else:
                         self.logger.error(f"Error sending Device_info Payload! MQTT Error Code: {result}")
+                    if self.check_tun0_available():
+                        payload = json.dumps(
+                            {
+                                "HardWareID": int(self.get_hw_id()),
+                                "object": {
+                                    "ParameterName": "Remote",
+                                    "Value": "1111",
+                                    "AlarmID": "8888"
+                                 }
+                             }
+                         )
+                        result,mid =self.client.publish('iot-data3', payload=payload, qos=1, retain=True)
+                        if result == mqtt.MQTT_ERR_SUCCESS:
+                            self.logger.info(f"Remote Access Feedback Payload send! Message ID: {mid}")
+                        else:
+                            self.logger.error(f"Error sending Remote Access Feedback Payload! MQTT Error Code: {result}")
+                        
+                        
+                        
 
     def process_remote_access(self, msg):
         m_decode = str(msg.payload.decode("UTF-8", "ignore"))
@@ -264,7 +283,7 @@ class MQTTClient:
                             }
                         }
                     )
-                    self.client.publish('iot-data3', payload=payload, qos=1, retain=True)
+                    #self.client.publish('iot-data3', payload=payload, qos=1, retain=True)
                     result,mid =self.client.publish('iot-data3', payload=payload, qos=1, retain=True)
                     if result == mqtt.MQTT_ERR_SUCCESS:
                         self.logger.info(f"Remote Access Feedback Payload send! Message ID: {mid}")
@@ -273,7 +292,7 @@ class MQTTClient:
 
                     command = '/home/pi/rmoteStart.sh'
                     result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-                    sys.exit()
+                    #sys.exit()
                     if result.returncode == 0:
                         self.logger.info(f"VPN Start Command ran successfully. Checking for tun0.....")
                         self.execute_command("sudo systemctl restart harp")
