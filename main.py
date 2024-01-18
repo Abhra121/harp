@@ -264,6 +264,7 @@ class MQTTClient:
                             }
                         }
                     )
+                    self.client.publish('iot-data3', payload=payload, qos=1, retain=True)
                     result,mid =self.client.publish('iot-data3', payload=payload, qos=1, retain=True)
                     if result == mqtt.MQTT_ERR_SUCCESS:
                         self.logger.info(f"Remote Access Feedback Payload send! Message ID: {mid}")
@@ -272,7 +273,7 @@ class MQTTClient:
 
                     command = '/home/pi/rmoteStart.sh'
                     result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-                    
+                    sys.exit()
                     if result.returncode == 0:
                         self.logger.info(f"VPN Start Command ran successfully. Checking for tun0.....")
                         self.execute_command("sudo systemctl restart harp")
