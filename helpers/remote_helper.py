@@ -4,7 +4,7 @@ import os
 from helpers.serial_hw_helper import get_hw_id
 
 
-def process_remote_access(logger, client, msg):
+def process_remote_accessS(logger, client, msg):
     m_decode = str(msg.payload.decode("UTF-8", "ignore"))
     data = json.loads(m_decode)
     hardware_id = int(data.get("HardWareID", 0))
