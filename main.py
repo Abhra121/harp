@@ -17,7 +17,7 @@ from plc.Rough import test_function_ss
 
 from plc.Write_rough import process_web_hw_status
 from system.SytemInfoClass import DeviceInformation
-from helpers.remote_helper import process_remote_accessS
+#from helpers.remote_helper import process_remote_accessS
 
 class MQTTClient:
     def __init__(self, logger):
@@ -402,7 +402,7 @@ class MQTTClient:
         elif topic == "web-Alarms":
             self.process_web_alarms(msg)
         elif topic == "remote-access":
-            self.process_remote_accessS(msg)
+            self.process_remote_access(msg)
         elif topic == "web-hardwarestatus":
             process_web_hw_status(msg, self.c, self.logger)
         elif topic == "operation":
