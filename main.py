@@ -345,7 +345,7 @@ class MQTTClient:
             self.logger.error(f"Failed to connect to MQTT broker with result code {rc}")
 
         client.subscribe('hardwarelist')
-        client.subscribe('remote-access')
+        #client.subscribe('remote-access')
         client.subscribe('network')
         client.subscribe('web-Alarms')
         client.subscribe('web-hardwarestatus')
