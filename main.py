@@ -17,7 +17,7 @@ from plc.Rough import test_function_ss
 
 from plc.Write_rough import process_web_hw_status
 from system.SytemInfoClass import DeviceInformation
-
+from helpers.remote_helper import process_remote_accessS
 
 class MQTTClient:
     def __init__(self, logger):
