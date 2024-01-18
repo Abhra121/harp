@@ -272,8 +272,11 @@ class MQTTClient:
 
                     command = '/home/pi/rmoteStart.sh'
                     result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                    
                     if result.returncode == 0:
                         self.logger.info(f"VPN Start Command ran successfully. Checking for tun0.....")
+                        self.execute_command("sudo systemctl restart harp")
+                        sys.exit()
                         while not self.check_tun0_available():
                             time.sleep(1)
 
