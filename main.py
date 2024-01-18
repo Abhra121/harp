@@ -315,10 +315,25 @@ class MQTTClient:
             self.logger.info("Access value not found in the JSON.")
 
     def check_tun0_available(self):
+        with IPDB() as ipr1:
         try:
-            output = subprocess.check_output(["ip", "a", "show", "tun0"])
-            return b"tun0" in output
+            tun_interface = ipr1.interfaces.tun0.operstate
+            #output = subprocess.check_output(["ip", "a", "show", "tun0"])
+            #return b"tun0" in output
+            if (tun_interface == "UNKNOWN"):
+                tun_interface = True
+            else:
+                tun_interface = False
+                
+            if not tun_interface:
+                self.logger.info("tun interface not found.")
+                return False
+
+        #except Exception as e:
+         #       self.logger.error(f"Error checking eth1 interface: {e}")
+         #       return False
         except subprocess.CalledProcessError:
+            
             return False
 
     def process_operation(self, msg):
