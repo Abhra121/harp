@@ -388,7 +388,7 @@ class MQTTClient:
             self.logger.error(f"Failed to connect to MQTT broker with result code {rc}")
 
         client.subscribe('hardwarelist')
-       #client.subscribe('remote-access')
+        client.subscribe('remote-access')
         client.subscribe('network')
         client.subscribe('web-Alarms')
         client.subscribe('web-hardwarestatus')
@@ -402,7 +402,7 @@ class MQTTClient:
         elif topic == "web-Alarms":
             self.process_web_alarms(msg)
         elif topic == "remote-access":
-            self.process_remote_access(msg)
+            self.process_remote_accessS(msg)
         elif topic == "web-hardwarestatus":
             process_web_hw_status(msg, self.c, self.logger)
         elif topic == "operation":
