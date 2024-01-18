@@ -4,7 +4,7 @@ import json
 import time
 import paho.mqtt.client as mqtt
 from datetime import datetime
-import thread6
+#import thread6
 import random
 import os
 import uuid
