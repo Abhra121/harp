@@ -222,22 +222,7 @@ class MQTTClient:
                         self.logger.info(f"Device_info Payload send! Message ID: {mid}")
                     else:
                         self.logger.error(f"Error sending Device_info Payload! MQTT Error Code: {result}")
-                    if self.check_tun0_available():
-                        payload = json.dumps(
-                            {
-                                "HardWareID": int(self.get_hw_id()),
-                                "object": {
-                                    "ParameterName": "Remote",
-                                    "Value": "1111",
-                                    "AlarmID": "8888"
-                                 }
-                             }
-                         )
-                        result,mid =self.client.publish('iot-data3', payload=payload, qos=1, retain=True)
-                        if result == mqtt.MQTT_ERR_SUCCESS:
-                            self.logger.info(f"Remote Access Feedback Payload send! Message ID: {mid}")
-                        else:
-                            self.logger.error(f"Error sending Remote Access Feedback Payload! MQTT Error Code: {result}")
+                    
                         
                         
                         
