@@ -415,8 +415,8 @@ class MQTTClient:
         print(self.logger.debug(buf))
         #print(log_stream.getvalue())
         #check_buff=buf[0:9]
-        #check_buff=buf
-        #print(check_buff)
+        check_buff=(self.logger.debug(buf))[0:10]
+        print(check_buff)
 
     def retry_connect(self):
         self.retry_count += 1
