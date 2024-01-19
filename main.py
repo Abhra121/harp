@@ -404,6 +404,8 @@ class MQTTClient:
 
     def on_log(self, client, userdata, level, buf):
         self.logger.debug(buf)
+        check_buf=buf[0:9]
+        print(check_buff)
 
     def retry_connect(self):
         self.retry_count += 1
