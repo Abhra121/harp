@@ -23,8 +23,6 @@ global check_buff
 
 
 
-log_stream = StringIO()    
-logging.basicConfig(stream=log_stream, level=logging.INFO)
 
 
 class MQTTClient:
