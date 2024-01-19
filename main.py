@@ -200,7 +200,8 @@ class MQTTClient:
 
                 if self.is_eth1_interface_present():
                     result, mid = self.client.publish("iot-data3", payload=payload, qos=1, retain=True)
-                    #print(check_buff)
+                    print("Repeat")
+                    print(check_buff)
                     if result == mqtt.MQTT_ERR_SUCCESS:
                         self.logger.info(f"Connection Payload send! Message ID: {mid}")
                     else:
@@ -219,7 +220,8 @@ class MQTTClient:
                         self.logger.error(f"Error sending Device_info Payload! MQTT Error Code: {result}")
                 else:
                     result, mid = self.client.publish("iot-data3", payload=payload, qos=1, retain=True)
-                    #print(check_buff)
+                    print("Repeat")
+                    print(check_buff)
                     if result == mqtt.MQTT_ERR_SUCCESS:
                         self.logger.info(f"Connection Payload send! Message ID: {mid}")
                     else:
