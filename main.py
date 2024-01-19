@@ -19,7 +19,7 @@ from plc.Rough import test_function_ss
 from plc.Write_rough import process_web_hw_status
 from system.SytemInfoClass import DeviceInformation
 #from helpers.remote_helper import process_remote_accessS
-global check_buff
+#global check_buff
 
 
 
@@ -414,6 +414,7 @@ class MQTTClient:
 
     def on_log(self, client, userdata, level, buf):
         self.logger.debug(buf)
+        global check_buff
         #print(self.logger.debug(buf))
         #print(log_stream.getvalue())
         #check_buff=buf[0:9]
