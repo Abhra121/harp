@@ -18,6 +18,7 @@ from plc.Rough import test_function_ss
 from plc.Write_rough import process_web_hw_status
 from system.SytemInfoClass import DeviceInformation
 #from helpers.remote_helper import process_remote_accessS
+global check_buff
 
 class MQTTClient:
     def __init__(self, logger):
@@ -194,6 +195,7 @@ class MQTTClient:
 
                 if self.is_eth1_interface_present():
                     result, mid = self.client.publish("iot-data3", payload=payload, qos=1, retain=True)
+                    print(check_buff)
                     if result == mqtt.MQTT_ERR_SUCCESS:
                         self.logger.info(f"Connection Payload send! Message ID: {mid}")
                     else:
@@ -212,6 +214,7 @@ class MQTTClient:
                         self.logger.error(f"Error sending Device_info Payload! MQTT Error Code: {result}")
                 else:
                     result, mid = self.client.publish("iot-data3", payload=payload, qos=1, retain=True)
+                    print(check_buff)
                     if result == mqtt.MQTT_ERR_SUCCESS:
                         self.logger.info(f"Connection Payload send! Message ID: {mid}")
                     else:
@@ -404,8 +407,9 @@ class MQTTClient:
 
     def on_log(self, client, userdata, level, buf):
         self.logger.debug(buf)
-        check_buf=buf[0:9]+"Hello"
-        print(check_buf)
+        #check_buff=buf[0:9]
+        check_buff=buf
+        #print(check_buff)
 
     def retry_connect(self):
         self.retry_count += 1
