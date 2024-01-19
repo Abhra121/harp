@@ -20,6 +20,15 @@ from system.SytemInfoClass import DeviceInformation
 #from helpers.remote_helper import process_remote_accessS
 global check_buff
 
+try:
+    from cStringIO import StringIO      # Python 2
+except ImportError:
+    from io import StringIO
+
+log_stream = StringIO()    
+logging.basicConfig(stream=log_stream, level=logging.INFO)
+
+
 class MQTTClient:
     def __init__(self, logger):
         self.retry_interval = 20
