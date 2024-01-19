@@ -4,7 +4,7 @@ import subprocess
 import sys
 import threading
 import time
-import logging
+
 
 from pyModbusTCP.client import ModbusClient
 from pyroute2 import IPDB
@@ -21,10 +21,7 @@ from system.SytemInfoClass import DeviceInformation
 #from helpers.remote_helper import process_remote_accessS
 global check_buff
 
-try:
-    from cStringIO import StringIO      # Python 2
-except ImportError:
-    from io import StringIO
+
 
 log_stream = StringIO()    
 logging.basicConfig(stream=log_stream, level=logging.INFO)
@@ -417,8 +414,8 @@ class MQTTClient:
 
     def on_log(self, client, userdata, level, buf):
         self.logger.debug(buf)
-        #print(str(buf))
-        print(log_stream.getvalue())
+        print(self.logger.debug(buf))
+        #print(log_stream.getvalue())
         #check_buff=buf[0:9]
         #check_buff=buf
         #print(check_buff)
