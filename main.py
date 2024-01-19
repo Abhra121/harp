@@ -200,13 +200,13 @@ class MQTTClient:
 
                 if self.is_eth1_interface_present():
                     result, mid = self.client.publish("iot-data3", payload=payload, qos=1, retain=True)
-                    print("Repeat")
-                    print(check_buff)
+                    #print("Repeat")
+                    #print(check_buff)
                     if result == mqtt.MQTT_ERR_SUCCESS:
                         self.logger.info(f"Connection Payload send! Message ID: {mid}")
                     else:
                         self.logger.error(f"Error sending Connection Payload! MQTT Error Code: {result}")
-
+                    
                     result, mid = self.client.publish("iot-data3", payload=test_function_ss(self.c), qos=1, retain=True)
                     if result == mqtt.MQTT_ERR_SUCCESS:
                         self.logger.info(f"PLC Payload send! Message ID: {mid}")
@@ -220,8 +220,8 @@ class MQTTClient:
                         self.logger.error(f"Error sending Device_info Payload! MQTT Error Code: {result}")
                 else:
                     result, mid = self.client.publish("iot-data3", payload=payload, qos=1, retain=True)
-                    print("Repeat")
-                    print(check_buff)
+                    #print("Repeat")
+                    #print(check_buff)
                     if result == mqtt.MQTT_ERR_SUCCESS:
                         self.logger.info(f"Connection Payload send! Message ID: {mid}")
                     else:
@@ -414,13 +414,13 @@ class MQTTClient:
 
     def on_log(self, client, userdata, level, buf):
         self.logger.debug(buf)
-        global check_buff
+        #global check_buff
         #print(self.logger.debug(buf))
         #print(log_stream.getvalue())
         #check_buff=buf[0:9]
-        check_buff=str(self.logger.debug(buf))
-        check_buff=check_buff[0:9]
-        print(check_buff)
+        #check_buff=str(self.logger.debug(buf))
+        #check_buff=check_buff[0:9]
+        #print(check_buff)
 
     def retry_connect(self):
         self.retry_count += 1
