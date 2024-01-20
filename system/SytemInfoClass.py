@@ -51,7 +51,7 @@ class DeviceInformation:
         try:
             service_status = subprocess.check_output("systemctl is-active harp.service", shell=True, text=True)
             #self.device_info["device_info"]["Software_info"]["service_status"]["harp_service"] = service_status.strip()
-            self.device_info[] = service_status.strip()
+            self.device_info[""] = service_status.strip()
         except subprocess.CalledProcessError:
             print("Error retrieving harp.service status.")
 
