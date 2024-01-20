@@ -197,6 +197,10 @@ class MQTTClient:
                 device_info_obj = DeviceInformation()
                 device_info_obj.get_device_info()
                 dev_payload = device_info_obj.to_json()
+                #payload = json.dumps(Dict)
+
+                with open("/home/pi/harp/dummy_data/dev_info.json", "w") as outfile:
+                    json.dump(payload, outfile)
 
                 if self.is_eth1_interface_present():
                     result, mid = self.client.publish("iot-data3", payload=payload, qos=1, retain=True)
