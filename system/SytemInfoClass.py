@@ -67,7 +67,8 @@ class DeviceInformation:
             cpus = self.extract_lscpu_info(lscpu_info, "CPU(s)")
             model_name = self.extract_lscpu_info(lscpu_info, "Model name")
 
-            self.device_info["device_info"]["Hardware_info"]["CPU"] = {
+            #self.device_info["device_info"]["Hardware_info"]["CPU"] = {
+            self.device_info = {
                 "Hardware": hardware,
                 "Revision": revision,
                 "Serial": serial,
@@ -92,7 +93,8 @@ class DeviceInformation:
             mem_free = self.convert_to_gb(mem_free)
             mem_available = self.convert_to_gb(mem_available)
 
-            self.device_info["device_info"]["Hardware_info"]["Memory"] = {
+            #self.device_info["device_info"]["Hardware_info"]["Memory"] = {
+            self.device_info = {    
                 "MemTotal": mem_total,
                 "MemFree": mem_free,
                 "MemAvailable": mem_available
@@ -112,7 +114,8 @@ class DeviceInformation:
             used_storage = self.convert_to_gb(used_storage)
             free_storage = self.convert_to_gb(free_storage)
 
-            self.device_info["device_info"]["Hardware_info"]["Storage"] = {
+            #self.device_info["device_info"]["Hardware_info"]["Storage"] = {
+            self.device_info = {    
                 "TotalStorage": total_storage,
                 "UsedStorage": used_storage,
                 "FreeStorage": free_storage
@@ -125,11 +128,13 @@ class DeviceInformation:
         try:
             netstat_info = subprocess.check_output("netstat -i", shell=True, text=True)
             interfaces = [line.split()[0] for line in netstat_info.split("\n")[2:] if line]
-            self.device_info["device_info"]["Hardware_info"]["Network_interface"] = {}
+            #self.device_info["device_info"]["Hardware_info"]["Network_interface"] = {}
+            self.device_info = {}
 
             for interface in interfaces:
                 ip_address = self.get_ip_address(interface)
-                self.device_info["device_info"]["Hardware_info"]["Network_interface"][interface] = {
+                #self.device_info["device_info"]["Hardware_info"]["Network_interface"][interface] = {
+                self.device_info = {
                     "IPAddress": ip_address
                 }
 
@@ -193,7 +198,8 @@ class DeviceInformation:
             os_name = self.extract_os_info(os_info, "NAME")
             os_pretty_name = self.extract_os_info(os_info, "PRETTY_NAME")
 
-            self.device_info["device_info"]["Software_info"]["OS"] = {
+            #self.device_info["device_info"]["Software_info"]["OS"] = {
+            self.device_info = {
                 "Name": os_name,
                 "PrettyName": os_pretty_name
             }
@@ -203,7 +209,8 @@ class DeviceInformation:
     def get_system_run_time(self):
         try:
             uptime_info = subprocess.check_output("uptime -p", shell=True, text=True)
-            self.device_info["device_info"]["Software_info"]["system_run_time"] = {
+            #self.device_info["device_info"]["Software_info"]["system_run_time"] = {
+            self.device_info = {
                 "uptime": uptime_info.strip()
             }
         except subprocess.CalledProcessError:
