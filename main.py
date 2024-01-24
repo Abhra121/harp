@@ -21,7 +21,6 @@ from system.SytemInfoClass import DeviceInformation
 #from helpers.remote_helper import process_remote_accessS
 #global check_buff
 
-
 class MQTTClient:
     def __init__(self, logger):
         self.retry_interval = 20
