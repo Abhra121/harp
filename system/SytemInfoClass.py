@@ -3,54 +3,32 @@ import subprocess
 import json
 from pyModbusTCP.client import ModbusClient
 
-#class DeviceInformation:
-#    def __init__(self):
-#        self.device_info = {
-#            "device_info": {
-#                "License_info": {
-#                   "serial_id": self.get_serial_id(),
-#                    "hardware_id": self.get_hw_id()
-#                },
-#                "Hardware_info": {
-#                    "CPU": {},
-#                    "Memory": {},
-#                    "Storage": {},
-#                    "Network_interface": {}
-#                },
-#                "Software_info": {
-#                    "OS": {},
-#                    "system_run_time": {},
-#                    "service_status": {
-#                       "harp_service": ""
-#                    }
-#                }
-#            }
-#        }
-#
-
 class DeviceInformation:
-def __init__(self):
-    self.device_info = {
-        "device_info": {
-            "License_info": {
-                "serial_id": self.get_serial_id(),
-                "hardware_id": self.get_hw_id()
-            },
-            "Hardware_info": {
-                "CPU": {},
-                "Memory": {},
-                "Storage": {},
-                "Network_interface": {}
-            },
-            "Software_info": {
-                "OS": {},
-                "system_run_time": {},
-                "service_status": {
-                    "harp_service": ""
+    def __init__(self):
+        self.device_info = {
+            "device_info": {
+                "License_info": {
+                   "serial_id": self.get_serial_id(),
+                    "hardware_id": self.get_hw_id()
+                },
+                "Hardware_info": {
+                    "CPU": {},
+                    "Memory": {},
+                    "Storage": {},
+                    "Network_interface": {}
+                },
+                "Software_info": {
+                    "OS": {},
+                    "system_run_time": {},
+                    "service_status": {
+                       "harp_service": ""
+                    }
                 }
             }
         }
-    }  
+
+
+
 
     def get_serial_id(self):
         try:
