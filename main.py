@@ -22,9 +22,6 @@ from system.SytemInfoClass import DeviceInformation
 #global check_buff
 
 
-
-
-
 class MQTTClient:
     def __init__(self, logger):
         self.retry_interval = 20
@@ -69,6 +66,7 @@ class MQTTClient:
         self.periodic_update_thread.start()
 
         self.first_run = True
+
 
     def is_eth1_interface_present(self):
         with IPDB() as ipr:
