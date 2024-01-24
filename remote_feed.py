@@ -73,21 +73,9 @@ if __name__ == '__main__':
     #client.connect(host=Config.MQTT_HOST, port=Config.MQTT_PORT, keepalive=60)
     client.loop_start()
 
-    run = True
-    start = time.time()
-
-    while run:
-        # publishes every 15 seconds
-        #time.sleep(15)
-        if time.time() - start > 20:
-            start = time.time()
-
-            f = open('/home/pi/remote.txt', 'r')
-            remote = f.read()
-            f.close()
-            print(remote)
-            #remote=int(remote)
-            payload = json.dumps(
+    #run = True
+    #start = time.time()
+    payload = json.dumps(
                 {
                     "HardWareID": ID,
                     "object": {
@@ -100,17 +88,9 @@ if __name__ == '__main__':
                     
                 }
             )
-            if (remote=='2'):
-                if (flag3==0):
-                    print("update tunnel status")
-                    flag3=1
-                    client.publish('iot-data3', payload=payload, qos=1, retain=True)
-            if (remote=='1'):
-                flag3=0
-        #time.sleep(20)
-        
-    #client.loop_stop()
+    client.publish('iot-data3', payload=payload, qos=1, retain=True)
     client.disconnect()
+
 
 
 
