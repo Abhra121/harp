@@ -255,8 +255,8 @@ class MQTTClient:
                     result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     if result.returncode == 0:
                         self.logger.info(f"VPN Stop Command ran successfully. Checking for removal of tun0 .....")
-                        while self.check_tun0_available():
-                            time.sleep(1)
+                        #while self.check_tun0_available():
+                        #    time.sleep(1)
                         #if not self.check_tun0_available():
                         #    self.logger.info(f"Remote Access (VPN) Stopped")
                         #    self.execute_command("sudo systemctl restart harp")
