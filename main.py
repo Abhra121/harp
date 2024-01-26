@@ -252,9 +252,10 @@ class MQTTClient:
             else:
                 if access == 0:
                     command = '/home/pi/rmoteStop.sh'
-                    result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-                    if result.returncode == 0:
-                        self.logger.info(f"VPN Stop Command ran successfully. Checking for removal of tun0 .....")
+                    os.popen('/home/pi/rmoteStop.sh')
+                    #result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                    #if result.returncode == 0:
+                    #    self.logger.info(f"VPN Stop Command ran successfully. Checking for removal of tun0 .....")
                         #while self.check_tun0_available():
                         #    time.sleep(1)
                         #if not self.check_tun0_available():
@@ -264,10 +265,10 @@ class MQTTClient:
                         #else:
                         #    self.logger.error("tun0 still available after stopping. There might be an error.")
                         #    sys.exit()
-                    else:
-                        self.logger.info(f"Command '{command}' failed with exit code {result.returncode}.")
-                        self.logger.info("Error output:")
-                        self.logger.info(result.stderr.decode())
+                    #else:
+                    #    self.logger.info(f"Command '{command}' failed with exit code {result.returncode}.")
+                    #    self.logger.info("Error output:")
+                    #    self.logger.info(result.stderr.decode())
                 elif access == 1:
                     payload = json.dumps(
                         {
@@ -287,10 +288,11 @@ class MQTTClient:
                         self.logger.error(f"Error sending Remote Access Feedback Payload! MQTT Error Code: {result}")
 
                     command = '/home/pi/rmoteStart.sh'
-                    result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                    #result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     #sys.exit()
-                    if result.returncode == 0:
-                        self.logger.info(f"VPN Start Command ran successfully. Checking for tun0.....")
+                    os.popen('/home/pi/rmoteStart.sh')
+                    #if result.returncode == 0:
+                    #    self.logger.info(f"VPN Start Command ran successfully. Checking for tun0.....")
                         #self.execute_command("sudo systemctl restart harp")
                         #sys.exit()
                         #while not self.check_tun0_available():
@@ -302,10 +304,10 @@ class MQTTClient:
                         #    sys.exit()
                         #else:
                         #    self.logger.error("tun0 not available. There might be an error.")
-                    else:
-                        self.logger.info(f"Command '{command}' failed with exit code {result.returncode}.")
-                        self.logger.info("Error output:")
-                        self.logger.info(result.stderr.decode())
+                    #else:
+                    #    self.logger.info(f"Command '{command}' failed with exit code {result.returncode}.")
+                    #    self.logger.info("Error output:")
+                    #    self.logger.info(result.stderr.decode())
 
         else:
             self.logger.info("Access value not found in the JSON.")
