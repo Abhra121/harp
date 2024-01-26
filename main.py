@@ -251,7 +251,7 @@ class MQTTClient:
                 self.first_run = False
             else:
                 if access == 0:
-                    command = '/home/pi/rmoteStop.sh'
+                    command = '/home/pi/remS.sh'
                     #os.popen('/home/pi/rmoteStop.sh')
                     result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     if result.returncode == 0:
@@ -287,7 +287,7 @@ class MQTTClient:
                     else:
                         self.logger.error(f"Error sending Remote Access Feedback Payload! MQTT Error Code: {result}")
 
-                    command = '/home/pi/rmoteStart.sh'
+                    command = '/home/pi/rem.sh'
                     result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     
                     #sys.exit()
