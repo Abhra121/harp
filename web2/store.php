@@ -9,7 +9,7 @@ if (isset($_GET["SSID"]) && isset($_GET["module"]))
            $a=1;
            echo "<br />";
            echo "Selected module type cavili";
-           $command = escapeshellcmd('sudo chmod 666 /dev/ttyACM0')
+           $command = escapeshellcmd('sudo chmod 666 /dev/ttyACM0');
            $output = exec($command);		   
            $command = escapeshellcmd('python3 /var/www/html/cavili_test.py '.$ssid);
            $output = exec($command);
