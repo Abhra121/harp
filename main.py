@@ -214,7 +214,7 @@ class MQTTClient:
                     #else:
                     #    self.logger.error(f"Error sending Connection Payload! MQTT Error Code: {result}")
                     
-                    result, mid = self.client.publish("iot-data3", payload=test_function_ss(self.c), qos=1, retain=True)
+                    result, mid = self.client.publish("iot-data5", payload=test_function_ss(self.c), qos=1, retain=True)
                     if result == mqtt.MQTT_ERR_SUCCESS:
                         self.logger.info(f"PLC Payload send! Message ID: {mid}")
                     else:
