@@ -206,13 +206,13 @@ class MQTTClient:
                     json.dump(dev_payload, outfile)
 
                 if self.is_eth1_interface_present():
-                    result, mid = self.client.publish("iot-data3", payload=payload, qos=1, retain=True)
+                    #result, mid = self.client.publish("iot-data3", payload=payload, qos=1, retain=True)
                     #print("Repeat")
                     #print(check_buff)
-                    if result == mqtt.MQTT_ERR_SUCCESS:
-                        self.logger.info(f"Connection Payload send! Message ID: {mid}")
-                    else:
-                        self.logger.error(f"Error sending Connection Payload! MQTT Error Code: {result}")
+                    #if result == mqtt.MQTT_ERR_SUCCESS:
+                    #    self.logger.info(f"Connection Payload send! Message ID: {mid}")
+                    #else:
+                    #    self.logger.error(f"Error sending Connection Payload! MQTT Error Code: {result}")
                     
                     result, mid = self.client.publish("iot-data3", payload=test_function_ss(self.c), qos=1, retain=True)
                     if result == mqtt.MQTT_ERR_SUCCESS:
@@ -220,25 +220,25 @@ class MQTTClient:
                     else:
                         self.logger.error(f"Error sending PLC Payload! MQTT Error Code: {result}")
 
-                    result, mid = self.client.publish("dev-data", payload=dev_payload, qos=1, retain=True)
-                    if result == mqtt.MQTT_ERR_SUCCESS:
-                        self.logger.info(f"Device_info Payload send! Message ID: {mid}")
-                    else:
-                        self.logger.error(f"Error sending Device_info Payload! MQTT Error Code: {result}")
+                    #result, mid = self.client.publish("dev-data", payload=dev_payload, qos=1, retain=True)
+                    #if result == mqtt.MQTT_ERR_SUCCESS:
+                    #    self.logger.info(f"Device_info Payload send! Message ID: {mid}")
+                    #else:
+                    #    self.logger.error(f"Error sending Device_info Payload! MQTT Error Code: {result}")
                 else:
-                    result, mid = self.client.publish("iot-data3", payload=payload, qos=1, retain=True)
-                    #print("Repeat")
+                    #result, mid = self.client.publish("iot-data3", payload=payload, qos=1, retain=True)
+                    print("No PLC found")
                     #print(check_buff)
-                    if result == mqtt.MQTT_ERR_SUCCESS:
-                        self.logger.info(f"Connection Payload send! Message ID: {mid}")
-                    else:
-                        self.logger.error(f"Error sending Connection Payload! MQTT Error Code: {result}")
+                    #if result == mqtt.MQTT_ERR_SUCCESS:
+                    #    self.logger.info(f"Connection Payload send! Message ID: {mid}")
+                    #else:
+                    #    self.logger.error(f"Error sending Connection Payload! MQTT Error Code: {result}")
 
-                    result, mid = self.client.publish("dev-data", payload=dev_payload, qos=1, retain=True)
-                    if result == mqtt.MQTT_ERR_SUCCESS:
-                        self.logger.info(f"Device_info Payload send! Message ID: {mid}")
-                    else:
-                        self.logger.error(f"Error sending Device_info Payload! MQTT Error Code: {result}")
+                    #result, mid = self.client.publish("dev-data", payload=dev_payload, qos=1, retain=True)
+                    #if result == mqtt.MQTT_ERR_SUCCESS:
+                    #    self.logger.info(f"Device_info Payload send! Message ID: {mid}")
+                    #else:
+                    #    self.logger.error(f"Error sending Device_info Payload! MQTT Error Code: {result}")
                     
                         
                         
