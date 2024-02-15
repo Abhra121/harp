@@ -336,50 +336,9 @@ def test_function_ss(c):
             Integer.append(c.read_holding_registers(int2[i], 1))
         Integer = intC(Integer)
 
-    if len(boolean2) != 0:
-        for i in range(len(boolean2)):
-            reg5.append(c.read_holding_registers(boolean2[i], 1))
-        reg6 = []
-        for i in range(len(reg5)):
-            if reg5[i] is not None:
-                s = [str(integer) for integer in reg5[i]]
-                a_string = "".join(s)
-
-                res = int(a_string)
-
-                reg6.append(res)
-            else:
-
-                reg6.append("None")
-
-        reg6 = list(filter(lambda item: item is not 'None', reg6))
-        print(reg6)
-        integer = []
-        for i in range(len(reg6)):
-            integer.append(reg6[i])
-        binary = []
-        for i in range(len(integer)):
-            regs_2_bin = str(format(integer[i], '016b'))
-
-            binary.append(regs_2_bin)
-
-        res_final = []
-
-        for i in range(len(binary)):
-            res10 = []
-            for x in range(16):
-                res10.append(binary[i][x])
-            res_final.append(res10)
-        for i in range(len(res_final)):
-            res_final[i] = arrange(res_final[i])
-
-        for i in range(len(res_final)):
-            res_final[i] = pop(res_final[i], R1[i])
-
-        res_finalF = []
-        for i in range(len(res_final)):
-            res_finalF = res_finalF + (res_final[i])
-        final = Integer + res_finalF + Float
+    if len(boolean2) == 0:
+        
+        final =  Float
 
         n = 1
         for i in range(len(name)):
