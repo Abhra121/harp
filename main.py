@@ -35,10 +35,16 @@ class MQTTClient:
         self.should_exit = False
         self.logger = logger
         self.client = mqtt.Client(str(uuid.uuid1()), reconnect_on_failure=True)
-        self.broker_address = "b-4d9d7a54-2795-4ab2-b1e7-c40ddf1113f7-1.mq.us-east-1.amazonaws.com"
+        
+        #self.broker_address = "b-4d9d7a54-2795-4ab2-b1e7-c40ddf1113f7-1.mq.us-east-1.amazonaws.com"
+        #self.port = 8883
+        #self.user = "ehashmq1"
+        #self.password = "eHash@12mqtt34!"
+
+        self.broker_address = "b-75e918e0-5eb3-47da-b422-480534b0afc5-1.mq.us-east-1.amazonaws.com"
         self.port = 8883
-        self.user = "ehashmq1"
-        self.password = "eHash@12mqtt34!"
+        self.user = "ehashMQ"
+        self.password = "Chennai@600100"
 
         self.client.on_connect = self.on_connect
         self.client.on_message = self.on_message
@@ -60,7 +66,7 @@ class MQTTClient:
         self.client.connect(self.broker_address, port=self.port, keepalive=60)
 
         self.client.loop_start()
-        self.c = ModbusClient(host='192.168.3.1', port=502, auto_open=True, debug=False)
+        self.c = ModbusClient(host='192.168.1.5', port=502, auto_open=True, debug=False)
         self.periodic_update_thread = threading.Thread(target=self.periodic_update, daemon=True)
         self.periodic_update_thread.start()
 
@@ -81,8 +87,8 @@ class MQTTClient:
                     return False
 
                 eth1_ip = self.get_interface_ip('eth1')
-                if eth1_ip != '192.168.3.11':
-                    self.logger.error(f"eth1 IP is not '192.168.3.11', found: {eth1_ip}")
+                if eth1_ip != '192.168.1.50':
+                    self.logger.error(f"eth1 IP is not '192.168.1.50', found: {eth1_ip}")
                     return False
 
                 if not self.check_sample_json():
@@ -179,7 +185,7 @@ class MQTTClient:
 
     def periodic_update(self):
         while not self.should_exit:
-            time.sleep(10)
+            time.sleep(50)
             if self.connection_flag:
                 payload = json.dumps(
                     {
@@ -386,11 +392,11 @@ class MQTTClient:
         else:
             self.logger.error(f"Failed to connect to MQTT broker with result code {rc}")
 
-        client.subscribe('hardwarelist')
-        client.subscribe('remote-access')
-        client.subscribe('network')
+        #client.subscribe('hardwarelist')
+        #client.subscribe('remote-access')
+        #client.subscribe('network')
         client.subscribe('web-Alarms')
-        client.subscribe('web-hardwarestatus')
+        #client.subscribe('web-hardwarestatus')
         client.subscribe('operation')
 
     def on_message(self, client, userdata, msg):
